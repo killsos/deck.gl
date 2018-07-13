@@ -8,8 +8,12 @@ import {TRANSITION_EVENTS} from './transition-manager';
 const LINEAR_TRANSITION_PROPS = {
   transitionDuration: 300,
   transitionEasing: t => t,
-  transitionInterpolator: new LinearInterpolator(),
+  transitionInterpolator: new LinearInterpolator(['zoom']),
   transitionInterruption: TRANSITION_EVENTS.BREAK
+};
+
+const NO_TRANSITION_PROPS = {
+  transitionDuration: 0
 };
 
 const defaultState = {
@@ -309,8 +313,9 @@ export default class OrbitController extends Controller {
     super(OrbitState, props);
   }
 
-  _getTransitionProps() {
-    // Enables Transitions on double-tap and key-down events.
-    return LINEAR_TRANSITION_PROPS;
+  _getTransitionProps(event) {
+    // Enables Transitions on double-tap.
+    const props = event.type === 'doubletap' ? LINEAR_TRANSITION_PROPS : NO_TRANSITION_PROPS;
+    return props;
   }
 }

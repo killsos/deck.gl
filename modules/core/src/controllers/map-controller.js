@@ -415,7 +415,7 @@ export default class MapController extends Controller {
     this.invertPan = true;
   }
 
-  _getTransitionProps() {
+  _getTransitionProps(event) {
     // Enables Transitions on double-tap and key-down events.
     return LINEAR_TRANSITION_PROPS;
   }

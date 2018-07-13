@@ -394,7 +394,7 @@ export default class Controller {
     const isZoomOut = this.isFunctionKeyPressed(event);
 
     const newControllerState = this.controllerState.zoom({pos, scale: isZoomOut ? 0.5 : 2});
-    return this.updateViewport(newControllerState, this._getTransitionProps());
+    return this.updateViewport(newControllerState, this._getTransitionProps(event));
   }
 
   /* eslint-disable complexity */
@@ -435,7 +435,7 @@ export default class Controller {
   }
   /* eslint-enable complexity */
 
-  _getTransitionProps() {
+  _getTransitionProps(event) {
     // Transitions on double-tap and key-down are only supported by MapController
     return NO_TRANSITION_PROPS;
   }
